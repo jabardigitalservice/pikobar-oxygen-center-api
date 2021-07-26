@@ -1,0 +1,33 @@
+migrations = "./migrations"
+
+debug = false
+
+[queries]
+location = "./queries"
+
+[auth]
+enabled = false
+
+[jwt]
+default = false
+
+[cors]
+alloworigin = ["*"]
+
+[ssl]
+mode = "disable"
+
+[access]
+restrict = true  # can access only the tables listed below
+
+    [[access.tables]]
+    name = "district"
+    permissions = ["read"]
+
+    [[access.tables]]
+    name = "subdistrict"
+    permissions = ["read"]
+
+    [[access.tables]]
+    name = "oxygen_center"
+    permissions = ["read"]
