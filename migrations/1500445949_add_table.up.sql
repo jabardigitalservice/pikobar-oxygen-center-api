@@ -1,4 +1,4 @@
-CREATE TABLE district (
+CREATE TABLE IF NOT EXISTS district (
     id serial PRIMARY KEY,
 	province_name VARCHAR (50),
 	province_code VARCHAR (50),
@@ -6,7 +6,7 @@ CREATE TABLE district (
 	district_name VARCHAR (50)
 );
 
-CREATE TABLE subdistrict (
+CREATE TABLE IF NOT EXISTS subdistrict (
     id serial PRIMARY KEY,
 	district_code VARCHAR (50),
 	subdistrict_code VARCHAR (50) UNIQUE NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE subdistrict (
     CONSTRAINT subdistrict_pkey_district_code FOREIGN KEY (district_code) REFERENCES district (district_code) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-CREATE TABLE oxygen_center (
+CREATE TABLE IF NOT EXISTS oxygen_center (
     id serial PRIMARY KEY,
     oxygen_center_name  VARCHAR (100),
     subdistrict_code VARCHAR (100),
