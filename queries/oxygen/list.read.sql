@@ -10,7 +10,7 @@ INNER JOIN
 WHERE 
     oxygen_center_name ILIKE '%'
     {{if isSet "search"}}
-        AND to_tsvector(address) @@ plainto_tsquery('{{.search}}')
+        AND to_tsvector(oxygen_center_name) || to_tsvector(address) @@ plainto_tsquery('{{.search}}')
     {{end}}
 
     {{if isSet "district_code"}}
