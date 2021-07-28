@@ -1,0 +1,17 @@
+FROM prest/prest
+
+COPY ./migrations ./migrations
+COPY ./queries ./queries
+COPY ./config/prest.toml .
+COPY ./entrypoint.sh .
+
+ENV PREST_PG_HOST $PREST_PG_HOST
+ENV PREST_PG_USER $PREST_PG_USER
+ENV PREST_PG_PASS $PREST_PG_PASS
+ENV PREST_PG_DATABASE $PREST_PG_DATABASE
+ENV PREST_PG_PORT $PREST_PG_PORT
+ENV PREST_SSL_MODE $PREST_SSL_MODE
+
+EXPOSE 3000
+
+ENTRYPOINT ["sh", "/app/entrypoint.sh"]
