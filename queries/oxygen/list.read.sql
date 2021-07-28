@@ -20,3 +20,7 @@ WHERE
     {{if isSet "subdistrict_code"}}
         AND subdistrict.subdistrict_code = '{{.subdistrict_code}}'
     {{end}}
+
+    {{if isSet "item_type"}}
+        AND item_type = '{{.item_type}}'
+    {{end}}
