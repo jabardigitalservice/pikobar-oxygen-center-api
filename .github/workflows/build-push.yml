@@ -24,7 +24,10 @@ jobs:
 #           username: ${{ secrets.REGISTRY_USERNAME  }}
 #           password: ${{ secrets.REGISTRY_PASSWORD }}
           
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Process version of the tag
         id: version
         uses: ncipollo/semantic-version-action@v1
