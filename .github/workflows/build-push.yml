@@ -52,7 +52,7 @@ jobs:
 
       - name: Command Group
         run: |
-          echo '${{ steps.bump-semver.outputs.current_version }}'
+          echo '${{ steps.get-latest-tag.outputs.tag }}'
 
       # - name: Deploy Caprover
       #   uses: floms/action-caprover@v1
