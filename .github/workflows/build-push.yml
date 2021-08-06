@@ -56,4 +56,4 @@ jobs:
             host: '${{ secrets.CAPROVER_HOST }}'
             password: '${{ secrets.CAPROVER_PASSWORD }}'
             app: '${{ secrets.CAPROVER_APP_NAME }}'
-            image: ${{ secrets.IMAGENAME }}:${{ steps.bump-semver.outputs.current_version }}
+            image: '${{ secrets.IMAGENAME }}:${{ steps.bump-semver.outputs.current_version }}'
