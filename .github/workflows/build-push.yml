@@ -24,21 +24,20 @@ jobs:
 #           username: ${{ secrets.REGISTRY_USERNAME  }}
 #           password: ${{ secrets.REGISTRY_PASSWORD }}
           
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
         with:
-          fetch-depth: 0
-      - name: Process version of the tag
-        id: version
-        uses: ncipollo/semantic-version-action@v1
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps.version.outputs) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump previous tag
-        env:
-          PREVIOUS_TAG: ${{ steps.version.outputs.previous_tag }}
-        run: echo "$PREVIOUS_TAG"
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          level: minor
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
       
 #       - name: Build and push
 #         id: docker_build
